@@ -1,8 +1,13 @@
+const cors = require("cors");
+const express = require("express");
+
+const cookieParser = require("cookie-parser");
+const { LOCAL_CLIENT, CLIENT } = require("../config/default");
 // middleware
-const applyMiddleWare = () => {
+const applyMiddleWare = (app) => {
   app.use(
     cors({
-      origin: ["http://localhost:5173"],
+      origin: [LOCAL_CLIENT, CLIENT],
       credentials: true,
     })
   );

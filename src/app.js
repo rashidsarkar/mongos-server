@@ -1,9 +1,11 @@
 const express = require("express");
+const applyMiddleWare = require("./middlewares/applyMiddleware");
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 
 //
+applyMiddleWare(app);
 
 app.get("/health", (req, res) => {
   res.send("Education is running");

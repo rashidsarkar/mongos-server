@@ -1,21 +1,11 @@
-const express = require("express");
-const cors = require("cors");
 require("dotenv").config();
+const express = require("express");
 const jwt = require("jsonwebtoken");
 const app = express();
-const cookieParser = require("cookie-parser");
+
 const port = process.env.PORT || 5000;
-const secret = process.env.DB_TOKEN;
 
 // middleware
-app.use(
-  cors({
-    origin: ["http://localhost:5173"],
-    credentials: true,
-  })
-);
-app.use(express.json());
-app.use(cookieParser());
 
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 // const uri = "mongodb://127.0.0.1:27017";
@@ -32,22 +22,6 @@ const client = new MongoClient(uri, {
 });
 
 //getman
-const gateman = (req, res, next) => {
-  const token = req.cookies?.token;
-  console.log(token);
-  if (!token) {
-    return res.status(401).send({ message: "NOT AUTHORIZED" });
-  }
-  jwt.verify(token, secret, function (err, decoded) {
-    if (err) {
-      return res.status(401).send({ message: "NOT AUTHORIZED" });
-    }
-    // console.log(decoded);
-    req.user = decoded;
-
-    next();
-  });
-};
 
 async function run() {
   try {
