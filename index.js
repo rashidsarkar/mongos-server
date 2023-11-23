@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const jwt = require("jsonwebtoken");
+
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -57,30 +57,7 @@ async function run() {
     //     })
     //     .send({ success: true });
     // });
-    app.post("/api/auth/access-token", async (req, res) => {
-      const user = req.body;
-      const token = jwt.sign(user, secret, {
-        expiresIn: "1h",
-      });
-      // Configure cookie settings based on environment
-      // const cookieOptions = {
-      //   httpOnly: true,
-      //   secure: process.env.NODE_ENV === "production",
-      // };
-      // if (process.env.NODE_ENV === "production") {
-      //   cookieOptions.sameSite = "none";
-      // } else {
-      //   cookieOptions.sameSite = "strict";
-      // }
-      res
-        .cookie("token", token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "none",
-        })
-        .send({ success: true });
-      // res.cookie("token", token, cookieOptions).send({ success: true });
-    });
+    app.post("/api/auth/access-token");
 
     app.post("/api/user/logout", async (req, res) => {
       const user = req.body;
