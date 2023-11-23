@@ -3,9 +3,12 @@ require("dotenv").config();
 const getConnectionString = () => {
   let connnectionURI;
   if (process.env.NODE_ENV === "development") {
-    connnectionURI = process.env.DATABASE_LOCAL;
-    connnectionURI.repeat("<username>", process.env.DATABASE_LOCAL_USERNAME);
-    connnectionURI.repeat("<pass>", process.env.DATABASE_LOCAL_PASSWORD);
+    const username = process.env.DB_USER;
+    const password = process.env.DB_PASS;
+    connnectionURI = process.env.DATA_URI.replace(
+      "<username>",
+      username
+    ).replace("<password>", password);
   } else {
     connnectionURI = process.env.DATABASE_PROD;
   }
