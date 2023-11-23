@@ -57,7 +57,6 @@ async function run() {
     //     })
     //     .send({ success: true });
     // });
-    app.post("/api/auth/access-token");
 
     app.post("/api/user/logout", async (req, res) => {
       const user = req.body;
