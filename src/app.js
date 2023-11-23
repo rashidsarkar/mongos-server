@@ -6,9 +6,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // authentication Router
+const authenticationRoutes = require("./routes/authentication/index");
 
 //middle ware
 applyMiddleWare(app);
+
+app.use(authenticationRoutes);
 
 app.get("/health", (req, res) => {
   res.send("Education is running");
