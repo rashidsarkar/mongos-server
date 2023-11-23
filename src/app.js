@@ -4,7 +4,7 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-//
+//middle ware
 applyMiddleWare(app);
 
 app.get("/health", (req, res) => {
