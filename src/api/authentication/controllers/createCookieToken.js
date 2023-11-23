@@ -4,6 +4,7 @@ const generateToken = require("../../../utils/generateToken");
 require("dotenv").config();
 const createCookieToken = async (req, res) => {
   const user = req.body;
+  // console.log(user);
   const token = generateToken(user);
   res
     .cookie("token", token, {
