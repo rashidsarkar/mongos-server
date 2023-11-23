@@ -1,6 +1,9 @@
 const express = require("express");
-const createCookieToken = require("../../api/authentication/controllers/createCookieToken");
-const clearCookieToken = require("../../api/authentication/controllers/clearCookieToken");
+const {
+  createCookieToken,
+  clearCookieToken,
+} = require("../../api/authentication/controllers");
+
 const router = express.Router();
 router.post("/api/auth/access-token", createCookieToken);
 
